@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Braze Test Site</title>
+  <script type="text/javascript" src="https://js.appboycdn.com/web-sdk/4.4/appboy.min.js"></script>
+</head>
+<body>
+  <h1>Welcome to Braze Test Site</h1>
+  <button onclick="identifyUser()">Identify User</button>
+  <button onclick="logCustomEvent()">Log Event</button>
+
+  <script>
+    appboy.initialize('YOUR-API-KEY', {
+      baseUrl: 'https://sdk.iad-01.braze.com/api/v3',
+      enableLogging: true
+    });
+
+    appboy.openSession();
+
+    function identifyUser() {
+      appboy.changeUser('test_user_123');
+      appboy.getUser().setEmail('test@example.com');
+      appboy.getUser().setCustomUserAttribute('plan', 'premium');
+    }
+
+    function logCustomEvent() {
+      appboy.logCustomEvent('Test Event');
+    }
+  </script>
+</body>
+</html>
